@@ -1,0 +1,31 @@
+{
+  "name": "example",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [
+    1313
+  ],
+  "portsAttributes": {
+    "1313": {
+      "label": "Port 1313",
+      "onAutoForward": "openBrowser",
+      "elevateIfNeeded": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "asciidoctor.asciidoctor-vscode",
+        "budparr.language-hugo-vscode",
+        "robole.markdown-snippets",
+        "GrapeCity.gc-excelviewer",
+        "aaron-bond.better-comments"
+      ]
+    }
+  }
+}

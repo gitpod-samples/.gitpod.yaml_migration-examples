@@ -1,0 +1,27 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Tailwind CSS JIT
+    init: npm install
+    command: npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css && gp sync-done styles && npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch
+  - name: Hugo Server
+    init: npm install
+    command: |
+      gp sync-await styles
+      git config --global pull.rebase false
+      git config --global fetch.prune true
+      git config --global diff.colorMoved zebra
+      hugo server -D -F --baseURL $(gp url 1313) --liveReloadPort=443 --appendPort=false --bind=0.0.0.0
+
+ports:
+  - port: 1313
+    onOpen: open-browser
+
+vscode:
+  extensions:
+    - asciidoctor.asciidoctor-vscode
+    - budparr.language-hugo-vscode
+    - robole.markdown-snippets
+    - GrapeCity.gc-excelviewer
+    - aaron-bond.better-comments

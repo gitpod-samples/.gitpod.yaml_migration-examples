@@ -1,0 +1,27 @@
+tasks:
+  - name: Tailwind Build and Watch
+    init: npm install
+    command: npx tailwindcss -i ./src/app.css -o ./static/css/main.css && gp sync-done styles && npx tailwindcss -i ./src/app.css -o ./static/css/main.css --watch
+  - name: Setup and Run Dev Environment
+    init: npm install
+    command: |
+      export HMR_HOST=`gp url 5173`
+      export PUBLIC_BUILD_MODE=development
+      git config --global pull.rebase false
+      git config --global fetch.prune true
+      git config --global diff.colorMoved zebra
+      gp sync-await styles
+      npm run dev
+ports:
+  - port: 5173
+    onOpen: open-browser
+
+vscode:
+  extensions:
+    - svelte.svelte-vscode
+    - bradlc.vscode-tailwindcss
+    - csstools.postcss
+    - carlocardella.vscode-texttoolbox
+    - sleistner.vscode-fileutils
+    - PKief.material-icon-theme
+    - valentjn.vscode-ltex

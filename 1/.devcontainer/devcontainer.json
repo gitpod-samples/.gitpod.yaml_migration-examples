@@ -1,0 +1,33 @@
+{
+  "name": "example",
+  "image": "mcr.microsoft.com/devcontainers/base:latest",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": false
+    },
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  "forwardPorts": [
+    5173
+  ],
+  "portsAttributes": {
+    "5173": {
+      "label": "Port 5173",
+      "onAutoForward": "openBrowser",
+      "elevateIfNeeded": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "svelte.svelte-vscode",
+        "bradlc.vscode-tailwindcss",
+        "csstools.postcss",
+        "carlocardella.vscode-texttoolbox",
+        "sleistner.vscode-fileutils",
+        "PKief.material-icon-theme",
+        "valentjn.vscode-ltex"
+      ]
+    }
+  }
+}
