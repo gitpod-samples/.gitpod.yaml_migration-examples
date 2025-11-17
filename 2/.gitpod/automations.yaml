@@ -15,6 +15,7 @@ tasks:
         dependsOn:
           - tailwild_build
         triggeredBy:
+          - manual
           - postEnvironmentStart
     
     run_dev_environment:
@@ -24,4 +25,5 @@ tasks:
         dependsOn:
             - tailwild_build
         triggeredBy:
+            - manual
             - postEnvironmentStart

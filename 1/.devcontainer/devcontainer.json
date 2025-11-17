@@ -1,6 +1,9 @@
 {
   "name": "example",
-  "image": "mcr.microsoft.com/devcontainers/base:latest",
+  "build": {
+    "context": ".",
+    "dockerfile": "Dockerfile"
+  },
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false

@@ -5,28 +5,27 @@ tasks:
             npm install
             npx tailwindcss -i ./src/app.css -o ./static/css/main.css
         triggeredBy:
-          - prebuild
-          - manual
+            - manual
+            - prebuild
 
     tailwind_watch:
         name: Tailwind Watch
         command: |
             npx tailwindcss -i ./src/app.css -o ./static/css/main.css --watch
         dependsOn:
-          - tailwild_build
+            - tailwild_build
         triggeredBy:
-          - postEnvironmentStart
-    
+            - manual
+            - postEnvironmentStart
+
     run_dev_environment:
         name: Setup and Run Dev Environment
         command: |
-            export HMR_HOST=`gitpod env port open 5173 -n HMR_HOST`
+            export HMR_HOST=$(gitpod env port open 5173 -n HMR_HOST)
             export PUBLIC_BUILD_MODE=development
-            git config --global pull.rebase false
-            git config --global fetch.prune true
-            git config --global diff.colorMoved zebra
             npm run dev
         dependsOn:
             - tailwild_build
         triggeredBy:
             - postEnvironmentStart
+            - manual
