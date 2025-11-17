@@ -1,29 +1,26 @@
 tasks:
     tailwild_build:
         name: Tailwind Build
-        command: npm install
+        command: |
+            npm install
+            npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css
         triggeredBy:
           - prebuild
           - manual
 
     tailwind_watch:
         name: Tailwind Watch
-        command: npx tailwindcss -i ./src/app.css -o ./static/css/main.css && gp sync-done styles && npx tailwindcss -i ./src/app.css -o ./static/css/main.css --watch
+        command: |
+            npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch
         dependsOn:
           - tailwild_build
         triggeredBy:
           - postEnvironmentStart
     
     run_dev_environment:
-        name: Setup and Run Dev Environment
+        name: Hugo Server
         command: |
-            export HMR_HOST=`gp url 5173`
-            export PUBLIC_BUILD_MODE=development
-            git config --global pull.rebase false
-            git config --global fetch.prune true
-            git config --global diff.colorMoved zebra
-            gp sync-await styles
-            npm run dev
+            hugo server -D -F --baseURL $(gitpod env port open 1313 -n Hugo) --liveReloadPort=443 --appendPort=false --bind=0.0.0.0
         dependsOn:
             - tailwild_build
         triggeredBy:

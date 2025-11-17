@@ -74,10 +74,8 @@ RUN wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${H
 
 # RUN apt-get -y purge lib*-dev && rm -rf /var/lib/apt/lists/*
 
-RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod
+RUN mkdir -p /builds/thunderheadeng/web/support
 
-RUN mkdir -p /builds/thunderheadeng/web
-
-RUN ln -s /workspace/support /builds/thunderheadeng/web/support
-
-RUN chown -R gitpod:gitpod /builds
+RUN git config --global pull.rebase false \
+    && git config --global fetch.prune true \
+    && git config --global diff.colorMoved zebra
