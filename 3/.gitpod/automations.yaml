@@ -1,0 +1,18 @@
+tasks:
+    install_and_build:
+        name: NPM build
+        command: |
+            npm install && npm run build
+        triggeredBy:
+            - manual
+            - prebuild
+
+    run_dev:
+        name: Setup and Run Dev Environment
+        command: |
+            npm run start
+        dependsOn:
+            - install_and_build
+        triggeredBy:
+            - manual
+            - postDevcontainerStart
