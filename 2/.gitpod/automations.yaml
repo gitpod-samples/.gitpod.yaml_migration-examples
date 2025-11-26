@@ -26,4 +26,4 @@ tasks:
             - tailwild_build
         triggeredBy:
             - manual
-            - postEnvironmentStart
+            - postDevcontainerStart
