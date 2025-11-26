@@ -16,7 +16,7 @@ tasks:
             - tailwild_build
         triggeredBy:
             - manual
-            - postEnvironmentStart
+            - postDevcontainerStart
 
     run_dev_environment:
         name: Setup and Run Dev Environment
@@ -27,5 +27,5 @@ tasks:
         dependsOn:
             - tailwild_build
         triggeredBy:
-            - postEnvironmentStart
+            - postDevcontainerStart
             - manual
