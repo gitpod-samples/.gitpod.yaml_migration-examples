@@ -16,7 +16,7 @@ tasks:
           - tailwild_build
         triggeredBy:
           - manual
-          - postEnvironmentStart
+          - postDevcontainerStart
     
     run_dev_environment:
         name: Hugo Server
@@ -26,4 +26,4 @@ tasks:
             - tailwild_build
         triggeredBy:
             - manual
-            - postEnvironmentStart
+            - postDevcontainerStart
